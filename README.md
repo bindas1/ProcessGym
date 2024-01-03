@@ -1,59 +1,43 @@
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#configuration-files-json-schemas">Configuration files JSON schemas</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
+# Deep Reinforcement Learning for Resource Allocation in Business Processes
 
+## Project Overview
 
+This repository presents an in-depth assessment and analysis of "Deep Reinforcement Learning for Resource Allocation in Business Processes." The primary focus is on evaluating the performance of Deep Q-Network (DQN) learning in comparison to traditional algorithms like First In, First Out (FIFO) and Shortest Processing Time (SPT).
+
+## Getting Started
+
+1. Set up the environment with Python 3.8 (recommended to use conda).
+
+```conda create --name process_gym python=3.8```
+
+2. Activate the environment
+
+```conda activate process_gym```
+
+3. Install the dependencies:
+
+```pip install -r requirements.txt```
+
+### Baseline Results
+
+To obtain baseline results, run the notebook `Process_gym_spt-fifo.ipynb`. Note that executing the cells for FIFO and SPT algorithms (30 times) may take at least two hours. The notebook also compares results for recreation and extension, saved in `results_recreation_3000` and `results_extension_3000` folders.
+
+### DQN Learning Results
+
+To obtain DQN learning results:
+
+1. To get single results for recreation / extension run either:
+- `python dqn_learning.py recreation`
+- `python dqn_learning.py extension`
+
+2. If you want to run both algorithms 30 times you can just use `script.sh` that I implemented but note that each run will take approximately 2 hours to complete so the whole script will take 120 hours on a single core...
+
+To evaluate the results and create charts for the obtained models run `dqn_learning.ipynb`. I have already provided the results that I obtained in the corresponding folder and running this notebook with the prepared files should take almost no time.
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 For the purpose of using tabular and approximate algorithms in the area of reinforcement learning, we designed and developed a dedicated simulation environment that we call ProcessGym.
 It can serve as a general-purpose framework for testing resource allocation algorithms.
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-Ensure you use Python 3.8. \
-To be able to run this project you just need to clone this repo and install all the requirements from the **`requirements.txt`** file.
-
-[comment]: <> (### Prerequisites)
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-`python test.py`
-
-`python dqn_learning.py`
-
-**`test.py`** file is used for basic testing of prepared simulation configurations and defined business processes.  
-One of 3 resource allocation methods can be used in the test file: random, FIFO (first in first out), and SPT (shortest processing time). 
-`Simulation` object has 3 methods for this purpose. Respectively `step()`, `step_fifo()` and `step_spt()`  .
-The `step()` method requires an action - a two-element list to be passed to it. List has to consist of the id of the task to which we will allocate the resource and allocated resource.  
-`test.py` file, also allows to specify duration of the entire simulation by modyfing `nmb_of_episodes` and `nmb_of_steps_per_episode` variables. 
-
-Running **`dqn_learning.py`** trains and tests the double DQN model. In **`dqn_learning.py`** user can control duration of training and testing.
-Variables responsible for that are:   `nmb_of_train_episodes`, `nmb_of_test_episodes`, `nmb_of_iterations_per_episode`, `nmb_of_episodes_before_training`
-
-Two configuration files must be passed to the constructor of the `ProcessDataLoader` class. One defines the simulation environment itself, 
-and the other defines resource eligibilites (schemas of the files are specified in section below).
-
- 
 
 ## Configuration files JSON schemas
 Examples of config files are in **conf** directory.
@@ -197,13 +181,6 @@ Examples of config files are in **conf** directory.
 
 
 
-<!-- ROADMAP -->
-
-[comment]: <> (## Roadmap)
-
-[comment]: <> (See the [open issues]&#40;https://github.com/othneildrew/Best-README-Template/issues&#41; for a list of proposed features &#40;and known issues&#41;.)
-
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -223,17 +200,5 @@ Any contributions you make are appreciated.
 [comment]: <> (## License)
 
 [comment]: <> (Distributed under the MIT License. See `LICENSE` for more information.)
-
-
-
-<!-- CONTACT -->
-## Contact
-
-
-
-[comment]: <> (<!-- ACKNOWLEDGEMENTS -->)
-
-[comment]: <> (## Acknowledgements)
-
 
 

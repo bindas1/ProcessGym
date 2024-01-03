@@ -1,0 +1,44 @@
+{
+  "process_id": 2,
+  "tasks": [
+    {
+      "id": 4,
+      "transitions": [
+        {"id": 4, "probability": 0.3},
+        {"id": 6, "probability": 0.4},
+        {"id": 7, "probability": 0.3}
+      ],
+      "duration": 8,
+      "duration_SD": 2,
+      "start": true
+    },
+    {
+      "id": 5,
+      "transitions": [
+        {"id": 6, "probability": 0.6},
+        {"id": 7, "probability": 0.4}
+      ],
+      "duration": 15,
+      "duration_SD": 5,
+      "start": false
+    },
+    {
+      "id": 6,
+      "transitions": [
+        {"id": 5, "probability": 0.2},
+        {"id": 6, "probability": 0.5},
+        {"id": 7, "probability": 0.3}
+      ],
+      "duration": 10,
+      "duration_SD": 3,
+      "start": false
+    },
+    {
+      "id": 7,
+      "transitions": [{"id": 4, "probability": 1.0}],
+      "duration": 6,
+      "duration_SD": 2,
+      "start": false
+    }
+  ]
+}

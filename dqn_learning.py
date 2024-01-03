@@ -10,6 +10,22 @@ from datetime import datetime
 import os
 import time
 import shutil
+import sys
+
+# Check if at least one command-line argument is provided
+if len(sys.argv) < 2:
+    print("Running paper recreation results (the default config)")
+    recreation_type = "recreation"
+    config_path = "./conf/"
+else:
+    # Access the command-line argument
+    recreation_type = sys.argv[1]
+    if recreation_type == "recreation":
+        config_path = "./conf/"
+    elif recreation_type == "extension":
+        config_path = "./my_conf/"
+    else:
+        assert False, f"Wrong python run, use python dqn_learning.py recreation/extension"
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
@@ -21,7 +37,7 @@ discount_rate = 1
 optimizer = keras.optimizers.Adam(lr=0.001)
 loss_fn = keras.losses.mean_squared_error
 
-loader = ProcessDataLoader("./conf/simulation_config.json", "./conf/resource_eligibility.json")
+loader = ProcessDataLoader(config_path + "simulation_config.json", config_path + "resource_eligibility.json")
 
 processes = loader.load_process_data()
 available_resources = loader.load_available_resources()
@@ -299,7 +315,8 @@ def main():
     print("Whole process took: {}", time.time() - start_time_all)
 
 def save_model(best_score_model, last_model, parameters_dict):
-    path = "results_" + datetime.now().strftime("%Y%m%d_%H_%M")
+    path = "./results_" + recreation_type
+    path += "/results_" + datetime.now().strftime("%Y%m%d_%H_%M")
     os.makedirs(path)
     os.makedirs(path + "/conf")
     os.makedirs(path + "/json_models")
